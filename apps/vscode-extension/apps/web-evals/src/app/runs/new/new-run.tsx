@@ -744,7 +744,7 @@ export function NewRun() {
 													decryption key for the .env.* files, generate a token with:
 												</p>
 												<code className="text-xs block mt-1">
-													pnpm --filter @roo-code-cloud/auth production:create-auth-token
+													pnpm --filter @godoty-cloud/auth production:create-auth-token
 													[email] [org] [ttl]
 												</code>
 											</TooltipContent>

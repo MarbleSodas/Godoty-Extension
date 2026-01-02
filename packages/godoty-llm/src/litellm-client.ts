@@ -90,8 +90,8 @@ export class LiteLLMClient {
       throw new Error(`Failed to fetch models: ${response.statusText}`);
     }
     
-    const data = await response.json();
-    return data.data.map((m: { id: string }) => m.id);
+    const data = await response.json() as { data: Array<{ id: string }> };
+    return data.data.map((m) => m.id);
   }
 
   async createChatCompletion(request: ChatCompletionRequest): Promise<ChatCompletionResponse> {
@@ -102,14 +102,14 @@ export class LiteLLMClient {
     });
 
     if (!response.ok) {
-      const error = await response.json();
+      const error = await response.json() as { error?: { message?: string } };
       throw new LiteLLMError(error.error?.message || 'Request failed', response.status);
     }
 
-    const result = await response.json();
-    
+    const result = await response.json() as ChatCompletionResponse;
+
     await this.trackUsage(request.model, result.usage);
-    
+
     return result;
   }
 
@@ -123,7 +123,7 @@ export class LiteLLMClient {
     });
 
     if (!response.ok) {
-      const error = await response.json();
+      const error = await response.json() as { error?: { message?: string } };
       throw new LiteLLMError(error.error?.message || 'Request failed', response.status);
     }
 

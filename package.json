@@ -14,7 +14,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --filter=!kilo-code",
+    "build:extension": "cd apps/vscode-extension && pnpm build",
+    "build:all": "turbo build --filter=!kilo-code && cd apps/vscode-extension && pnpm build",
     "dev": "turbo dev",
     "test": "turbo test",
     "test:integration": "turbo test:integration",

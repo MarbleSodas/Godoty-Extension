@@ -1,6 +1,6 @@
 import type { AuthProvider } from "../types.js"
 import type { ProviderName } from "../../types/messages.js"
-import { kilocodeDeviceAuthProvider, kilocodeTokenAuthProvider } from "./kilocode/index.js"
+import { supabaseAuthProvider } from "./supabase/index.js"
 import { otherProvider } from "./other/index.js"
 import { createGenericAuthProvider } from "./factory.js"
 import { shouldUseGenericAuth } from "./config.js"
@@ -11,9 +11,8 @@ import { PROVIDER_LABELS } from "../../constants/providers/labels.js"
  * Ordered by priority (most recommended first)
  */
 export const authProviders: AuthProvider[] = [
-	// Special providers with custom authentication flows
-	kilocodeDeviceAuthProvider, // Recommended: Browser-based device auth
-	kilocodeTokenAuthProvider, // Advanced: Manual token entry
+	// Primary authentication provider for Godoty
+	supabaseAuthProvider, // Recommended: Supabase OAuth (GitHub/Google)
 
 	// Auto-generate providers for all others that support generic auth
 	...Object.keys(PROVIDER_LABELS)

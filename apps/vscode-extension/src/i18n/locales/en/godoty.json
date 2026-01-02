@@ -51,7 +51,7 @@
 		}
 	},
 	"commitMessage": {
-		"activated": "Kilo Code commit message generator activated",
+		"activated": "Godoty commit message generator activated",
 		"gitNotFound": "⚠️ Git repository not found or git not available",
 		"gitInitError": "⚠️ Git initialization error: {{error}}",
 		"generating": "Kilo: Generating commit message...",
@@ -62,7 +62,7 @@
 		"activationFailed": "Kilo: Failed to activate message generator: {{error}}",
 		"providerRegistered": "Kilo: Commit message provider registered",
 		"errors": {
-			"connectionFailed": "Failed to connect to Kilo Code extension",
+			"connectionFailed": "Failed to connect to Godoty extension",
 			"timeout": "Request timed out after 30 seconds",
 			"invalidResponse": "Invalid response format received from extension",
 			"missingMessage": "No commit message received from extension",
@@ -88,7 +88,7 @@
 		"progress": {
 			"title": "Generating Commit Message",
 			"analyzing": "Analyzing changes...",
-			"connecting": "Connecting to Kilo Code...",
+			"connecting": "Connecting to Godoty...",
 			"generating": "Generating commit message..."
 		},
 		"ui": {
@@ -102,8 +102,8 @@
 			"snoozed": "snoozed",
 			"warning": "$(warning) Autocomplete",
 			"tooltip": {
-				"basic": "Kilo Code Autocomplete",
-				"disabled": "Kilo Code Autocomplete (disabled)",
+				"basic": "Godoty Autocomplete",
+				"disabled": "Godoty Autocomplete (disabled)",
 				"tokenError": "A valid token must be set to use Autocomplete",
 				"sessionTotal": "Session total cost:",
 				"provider": "Provider:",
@@ -118,36 +118,36 @@
 				"lessThanCent": "<$0.01"
 			}
 		},
-		"toggleMessage": "Kilo Code Autocomplete {{status}}",
+		"toggleMessage": "Godoty Autocomplete {{status}}",
 		"progress": {
-			"title": "Kilo Code",
+			"title": "Godoty",
 			"analyzing": "Analyzing your code...",
 			"generating": "Generating suggested edits...",
 			"processing": "Processing suggested edits...",
 			"showing": "Displaying suggested edits..."
 		},
 		"input": {
-			"title": "Kilo Code: Quick Task",
+			"title": "Godoty: Quick Task",
 			"placeholder": "e.g., 'refactor this function to be more efficient'"
 		},
 		"commands": {
-			"generateSuggestions": "Kilo Code: Generate Suggested Edits",
+			"generateSuggestions": "Godoty: Generate Suggested Edits",
 			"displaySuggestions": "Display Suggested Edits",
 			"cancelSuggestions": "Cancel Suggested Edits",
 			"applyCurrentSuggestion": "Apply Current Suggested Edit",
 			"applyAllSuggestions": "Apply All Suggested Edits",
-			"category": "Kilo Code"
+			"category": "Godoty"
 		},
 		"codeAction": {
-			"title": "Kilo Code: Suggested Edits"
+			"title": "Godoty: Suggested Edits"
 		},
 		"chatParticipant": {
-			"fullName": "Kilo Code Agent",
+			"fullName": "Godoty Agent",
 			"name": "Agent",
 			"description": "I can help you with quick tasks and suggested edits."
 		},
 		"incompatibilityExtensionPopup": {
-			"message": "The Kilo Code Autocomplete is being blocked by a conflict with GitHub Copilot. To fix this, you must disable Copilot's inline suggestions.",
+			"message": "The Godoty Autocomplete is being blocked by a conflict with GitHub Copilot. To fix this, you must disable Copilot's inline suggestions.",
 			"disableCopilot": "Disable Copilot",
 			"disableInlineAssist": "Disable Autocomplete"
 		}
@@ -160,9 +160,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "Your Kilocode CLI version is outdated and doesn't support the Agent Manager. Please update to the latest version.",
-			"cliNotFound": "Kilocode CLI not found. Please install it to use the Agent Manager.",
-			"cliMisconfigured": "Kilocode CLI is not configured. Please run 'kilocode auth' to sign in or 'kilocode config' to configure.",
+			"cliOutdated": "Your Godoty CLI version is outdated and doesn't support the Agent Manager. Please update to the latest version.",
+			"cliNotFound": "Godoty CLI not found. Please install it to use the Agent Manager.",
+			"cliMisconfigured": "Godoty CLI is not configured. Please run 'godoty auth' to sign in or 'godoty config' to configure.",
 			"sessionFailed": "Failed to start agent session",
 			"sessionFailedWithMessage": "Failed to start agent session: {{message}}"
 		},
@@ -175,12 +175,12 @@
 			"updateLocal": "Update Local",
 			"installGlobal": "Install Global",
 			"installLocal": "Install Local",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config"
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config"
 		},
 		"terminal": {
-			"installMessage": "Running npm install to install the Kilocode CLI. Once complete, you can close this terminal and try starting the Agent Manager again.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Running npm install to install the Godoty CLI. Once complete, you can close this terminal and try starting the Agent Manager again.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	},
 	"terminalCommandGenerator": {

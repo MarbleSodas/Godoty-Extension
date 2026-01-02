@@ -1,13 +1,13 @@
 {
-	"name": "kilo-code",
+	"name": "godoty",
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
-	"publisher": "kilocode",
+	"publisher": "godoty",
 	"version": "4.141.1",
 	"icon": "assets/icons/logo-outline-black.png",
 	"galleryBanner": {
-		"color": "#FFFFFF",
-		"theme": "light"
+		"color": "#478CBF",
+		"theme": "dark"
 	},
 	"engines": {
 		"vscode": "^1.84.0",
@@ -17,13 +17,13 @@
 		"workspace"
 	],
 	"author": {
-		"name": "Kilo Code"
+		"name": "Godoty"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Kilo-Org/kilocode"
+		"url": "https://github.com/Godoty-Extension/godoty"
 	},
-	"homepage": "https://kilo.ai",
+	"homepage": "https://github.com/Godoty-Extension/godoty",
 	"categories": [
 		"AI",
 		"Chat",
@@ -33,20 +33,19 @@
 		"Testing"
 	],
 	"keywords": [
-		"kilo",
+		"godot",
+		"godoty",
 		"claude",
 		"dev",
 		"mcp",
-		"openrouter",
+		"litellm",
 		"coding",
 		"agent",
 		"autonomous",
-		"chatgpt",
-		"sonnet",
-		"ai",
-		"llama",
-		"Kilo Code",
-		"kilocode"
+		"game",
+		"development",
+		"gdscript",
+		"ai"
 	],
 	"activationEvents": [
 		"onLanguage",
@@ -59,22 +58,22 @@
 	"contributes": {
 		"walkthroughs": [
 			{
-				"id": "kiloCodeWalkthrough",
-				"title": "5 ways Kilo Code helps you code",
-				"description": "You now have a personal AI coding assistant.",
+				"id": "godotyWalkthrough",
+				"title": "5 ways Godoty helps you build games",
+				"description": "You now have an AI assistant specialized for Godot game development.",
 				"steps": [
 					{
 						"id": "welcome",
-						"title": "Write code for you",
-						"description": "Describe what you want to build. Kilo Code will write it from scratch, generate the files, and run them for you.",
+						"title": "Write GDScript for you",
+						"description": "Describe what you want to build. Godoty will write the GDScript code, generate the files, and integrate with your Godot project.",
 						"media": {
 							"markdown": "./dist/walkthrough/step1.md"
 						}
 					},
 					{
 						"id": "getting-started",
-						"title": "Understand your codebase",
-						"description": "Need clarity on how something works? Ask Kilo Code about any part of your files and get a clear explanation.",
+						"title": "Understand your game code",
+						"description": "Need clarity on how something works? Ask Godoty about any part of your Godot project and get a clear explanation.",
 						"media": {
 							"markdown": "./dist/walkthrough/step2.md"
 						},
@@ -84,16 +83,16 @@
 					},
 					{
 						"id": "modes",
-						"title": "Get things working again",
-						"description": "Stuck on an error? Kilo Code can find the issue, fix it, and get your code running.",
+						"title": "Fix Godot errors",
+						"description": "Stuck on a Godot error? Godoty can find the issue, fix it, and get your game running.",
 						"media": {
 							"markdown": "./dist/walkthrough/step3.md"
 						}
 					},
 					{
 						"id": "code-actions",
-						"title": "Plan your logic",
-						"description": "Not sure where to start? Map out your logic and structure before writing a single line of code.",
+						"title": "Plan your game logic",
+						"description": "Not sure where to start? Map out your game logic and structure before writing a single line of code.",
 						"media": {
 							"markdown": "./dist/walkthrough/step4.md"
 						}
@@ -101,7 +100,7 @@
 					{
 						"id": "advanced-features",
 						"title": "And more",
-						"description": "Improve your prompt, add context, or create your own custom modes.",
+						"description": "Connect to your Godot editor, capture viewports, and create custom modes for your game development workflow.",
 						"media": {
 							"markdown": "./dist/walkthrough/step5.md"
 						}
@@ -112,7 +111,7 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "kilo-code-ActivityBar",
+					"id": "godoty-ActivityBar",
 					"title": "%views.activitybar.title%",
 					"icon": "assets/icons/kilo.png",
 					"darkIcon": "assets/icons/kilo-dark.png"
@@ -120,10 +119,10 @@
 			]
 		},
 		"views": {
-			"kilo-code-ActivityBar": [
+			"godoty-ActivityBar": [
 				{
 					"type": "webview",
-					"id": "kilo-code.SidebarProvider",
+					"id": "godoty.SidebarProvider",
 					"name": "%views.sidebar.name%",
 					"icon": "assets/icons/kilo.png",
 					"darkIcon": "assets/icons/kilo-dark.png"
@@ -132,133 +131,133 @@
 		},
 		"commands": [
 			{
-				"command": "kilo-code.plusButtonClicked",
+				"command": "godoty.plusButtonClicked",
 				"title": "%command.newTask.title%",
 				"icon": "$(add)"
 			},
 			{
-				"command": "kilo-code.mcpButtonClicked",
+				"command": "godoty.mcpButtonClicked",
 				"title": "%command.mcpServers.title%",
 				"icon": "$(server)"
 			},
 			{
-				"command": "kilo-code.importSettings",
+				"command": "godoty.importSettings",
 				"title": "%command.importSettings.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.exportSettings",
+				"command": "godoty.exportSettings",
 				"title": "Export Settings",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.promptsButtonClicked",
+				"command": "godoty.promptsButtonClicked",
 				"title": "%command.prompts.title%",
 				"icon": "$(organization)"
 			},
 			{
-				"command": "kilo-code.historyButtonClicked",
+				"command": "godoty.historyButtonClicked",
 				"title": "%command.history.title%",
 				"icon": "$(history)"
 			},
 			{
-				"command": "kilo-code.marketplaceButtonClicked",
+				"command": "godoty.marketplaceButtonClicked",
 				"title": "%command.marketplace.title%",
 				"icon": "$(extensions)"
 			},
 			{
-				"command": "kilo-code.popoutButtonClicked",
+				"command": "godoty.popoutButtonClicked",
 				"title": "%command.openInEditor.title%",
 				"icon": "$(link-external)"
 			},
 			{
-				"command": "kilo-code.settingsButtonClicked",
+				"command": "godoty.settingsButtonClicked",
 				"title": "%command.settings.title%",
 				"icon": "$(settings-gear)"
 			},
 			{
-				"command": "kilo-code.helpButtonClicked",
+				"command": "godoty.helpButtonClicked",
 				"title": "%command.documentation.title%",
 				"icon": "$(question)"
 			},
 			{
-				"command": "kilo-code.openInNewTab",
+				"command": "godoty.openInNewTab",
 				"title": "%command.openInNewTab.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.explainCode",
+				"command": "godoty.explainCode",
 				"title": "%command.explainCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.fixCode",
+				"command": "godoty.fixCode",
 				"title": "%command.fixCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.improveCode",
+				"command": "godoty.improveCode",
 				"title": "%command.improveCode.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.addToContext",
+				"command": "godoty.addToContext",
 				"title": "%command.addToContext.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.addToContextAndFocus",
+				"command": "godoty.addToContextAndFocus",
 				"title": "Add to Context and Focus",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.newTask",
+				"command": "godoty.newTask",
 				"title": "%command.newTask.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.terminalAddToContext",
+				"command": "godoty.terminalAddToContext",
 				"title": "%command.terminal.addToContext.title%",
 				"category": "%extension.displayName%"
 			},
 			{
-				"command": "kilo-code.terminalFixCommand",
+				"command": "godoty.terminalFixCommand",
 				"title": "%command.terminal.fixCommand.title%",
 				"category": "%extension.displayName%"
 			},
 			{
-				"command": "kilo-code.terminalExplainCommand",
+				"command": "godoty.terminalExplainCommand",
 				"title": "%command.terminal.explainCommand.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.generateTerminalCommand",
+				"command": "godoty.generateTerminalCommand",
 				"title": "%command.terminal.generateCommand.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.setCustomStoragePath",
+				"command": "godoty.setCustomStoragePath",
 				"title": "%command.setCustomStoragePath.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.focusChatInput",
+				"command": "godoty.focusChatInput",
 				"title": "%command.focusInput.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.acceptInput",
+				"command": "godoty.acceptInput",
 				"title": "%command.acceptInput.title%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.profileButtonClicked",
+				"command": "godoty.profileButtonClicked",
 				"title": "%command.profile.title%",
 				"icon": "$(account)",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.vsc.generateCommitMessage",
+				"command": "godoty.vsc.generateCommitMessage",
 				"title": "%command.generateCommitMessage.title%",
 				"icon": {
 					"light": "assets/icons/kilo-light.svg",
@@ -267,37 +266,37 @@
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.generateSuggestions",
+				"command": "godoty.ghost.generateSuggestions",
 				"title": "%ghost.commands.generateSuggestions%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.cancelSuggestions",
+				"command": "godoty.ghost.cancelSuggestions",
 				"title": "%ghost.commands.cancelSuggestions%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.applyCurrentSuggestions",
+				"command": "godoty.ghost.applyCurrentSuggestions",
 				"title": "%ghost.commands.applyCurrentSuggestion%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.applyAllSuggestions",
+				"command": "godoty.ghost.applyAllSuggestions",
 				"title": "%ghost.commands.applyAllSuggestions%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.goToNextSuggestion",
+				"command": "godoty.ghost.goToNextSuggestion",
 				"title": "%ghost.commands.goToNextSuggestion%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.ghost.goToPreviousSuggestion",
+				"command": "godoty.ghost.goToPreviousSuggestion",
 				"title": "%ghost.commands.goToPreviousSuggestion%",
 				"category": "%configuration.title%"
 			},
 			{
-				"command": "kilo-code.agentManagerOpen",
+				"command": "godoty.agentManagerOpen",
 				"title": "Open Agent Manager",
 				"icon": "$(circuit-board)",
 				"category": "%configuration.title%"
@@ -326,136 +325,136 @@
 		"menus": {
 			"editor/context": [
 				{
-					"submenu": "kilo-code.contextMenu",
+					"submenu": "godoty.contextMenu",
 					"group": "1"
 				}
 			],
-			"kilo-code.contextMenu": [
+			"godoty.contextMenu": [
 				{
-					"command": "kilo-code.explainCode",
+					"command": "godoty.explainCode",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "kilo-code.fixCode",
+					"command": "godoty.fixCode",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "kilo-code.improveCode",
+					"command": "godoty.improveCode",
 					"group": "1_actions@3"
 				},
 				{
-					"command": "kilo-code.addToContext",
+					"command": "godoty.addToContext",
 					"group": "1_actions@4"
 				}
 			],
 			"terminal/context": [
 				{
-					"submenu": "kilo-code.terminalMenu",
+					"submenu": "godoty.terminalMenu",
 					"group": "2"
 				}
 			],
-			"kilo-code.terminalMenu": [
+			"godoty.terminalMenu": [
 				{
-					"command": "kilo-code.terminalAddToContext",
+					"command": "godoty.terminalAddToContext",
 					"group": "1_actions@1"
 				},
 				{
-					"command": "kilo-code.terminalFixCommand",
+					"command": "godoty.terminalFixCommand",
 					"group": "1_actions@2"
 				},
 				{
-					"command": "kilo-code.terminalExplainCommand",
+					"command": "godoty.terminalExplainCommand",
 					"group": "1_actions@3"
 				}
 			],
 			"view/title": [
 				{
-					"command": "kilo-code.plusButtonClicked",
+					"command": "godoty.plusButtonClicked",
 					"group": "navigation@0",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.agentManagerOpen",
+					"command": "godoty.agentManagerOpen",
 					"group": "navigation@1",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.mcpButtonClicked",
+					"command": "godoty.mcpButtonClicked",
 					"group": "navigation@2",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.marketplaceButtonClicked",
+					"command": "godoty.marketplaceButtonClicked",
 					"group": "navigation@3",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.historyButtonClicked",
+					"command": "godoty.historyButtonClicked",
 					"group": "navigation@4",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.profileButtonClicked",
+					"command": "godoty.profileButtonClicked",
 					"group": "navigation@5",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.settingsButtonClicked",
+					"command": "godoty.settingsButtonClicked",
 					"group": "navigation@6",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.popoutButtonClicked",
+					"command": "godoty.popoutButtonClicked",
 					"group": "navigation@7",
-					"when": "view == kilo-code.SidebarProvider"
+					"when": "view == godoty.SidebarProvider"
 				},
 				{
-					"command": "kilo-code.helpButtonClicked",
+					"command": "godoty.helpButtonClicked",
 					"group": "navigation@8",
-					"when": "false && view == kilo-code.SidebarProvider"
+					"when": "false && view == godoty.SidebarProvider"
 				}
 			],
 			"editor/title": [
 				{
-					"command": "kilo-code.plusButtonClicked",
+					"command": "godoty.plusButtonClicked",
 					"group": "navigation@1",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				},
 				{
-					"command": "kilo-code.mcpButtonClicked",
+					"command": "godoty.mcpButtonClicked",
 					"group": "navigation@2",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				},
 				{
-					"command": "kilo-code.historyButtonClicked",
+					"command": "godoty.historyButtonClicked",
 					"group": "navigation@3",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				},
 				{
-					"command": "kilo-code.popoutButtonClicked",
+					"command": "godoty.popoutButtonClicked",
 					"group": "navigation@4",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				},
 				{
-					"command": "kilo-code.settingsButtonClicked",
+					"command": "godoty.settingsButtonClicked",
 					"group": "navigation@5",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				},
 				{
-					"command": "kilo-code.helpButtonClicked",
+					"command": "godoty.helpButtonClicked",
 					"group": "navigation@6",
-					"when": "activeWebviewPanelId == kilo-code.TabPanelProvider"
+					"when": "activeWebviewPanelId == godoty.TabPanelProvider"
 				}
 			],
 			"scm/input": [
 				{
-					"command": "kilo-code.vsc.generateCommitMessage",
+					"command": "godoty.vsc.generateCommitMessage",
 					"group": "navigation"
 				}
 			],
 			"scm/title": [
 				{
-					"command": "kilo-code.vsc.generateCommitMessage",
+					"command": "godoty.vsc.generateCommitMessage",
 					"when": "scmProvider == git",
 					"group": "navigation"
 				}
@@ -463,35 +462,35 @@
 		},
 		"keybindings": [
 			{
-				"command": "kilo-code.focusChatInput",
+				"command": "godoty.focusChatInput",
 				"key": "ctrl+shift+a",
 				"mac": "cmd+shift+a",
 				"when": "true"
 			},
 			{
-				"command": "kilo-code.ghost.cancelSuggestions",
+				"command": "godoty.ghost.cancelSuggestions",
 				"key": "escape",
-				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && kilocode.ghost.hasSuggestions"
+				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && godoty.ghost.hasSuggestions"
 			},
 			{
-				"command": "kilo-code.ghost.generateSuggestions",
+				"command": "godoty.ghost.generateSuggestions",
 				"key": "ctrl+l",
 				"mac": "cmd+l",
-				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && kilocode.ghost.enableSmartInlineTaskKeybinding && !github.copilot.completions.enabled"
+				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && godoty.ghost.enableSmartInlineTaskKeybinding && !github.copilot.completions.enabled"
 			},
 			{
-				"command": "kilo-code.ghost.showIncompatibilityExtensionPopup",
+				"command": "godoty.ghost.showIncompatibilityExtensionPopup",
 				"key": "ctrl+l",
 				"mac": "cmd+l",
-				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && kilocode.ghost.enableSmartInlineTaskKeybinding && github.copilot.completions.enabled"
+				"when": "editorTextFocus && !editorTabMovesFocus && !inSnippetMode && godoty.ghost.enableSmartInlineTaskKeybinding && github.copilot.completions.enabled"
 			},
 			{
-				"command": "kilo-code.generateTerminalCommand",
+				"command": "godoty.generateTerminalCommand",
 				"key": "ctrl+shift+g",
 				"mac": "cmd+shift+g"
 			},
 			{
-				"command": "kilo-code.addToContext",
+				"command": "godoty.addToContext",
 				"key": "cmd+k cmd+a",
 				"mac": "cmd+k cmd+a",
 				"win": "ctrl+k ctrl+a",
@@ -499,21 +498,21 @@
 				"when": "editorTextFocus && editorHasSelection"
 			},
 			{
-				"command": "kilo-code.addToContextAndFocus",
+				"command": "godoty.addToContextAndFocus",
 				"key": "ctrl+i",
 				"mac": "cmd+i",
 				"win": "ctrl+i",
 				"linux": "ctrl+i",
-				"when": "editorTextFocus && !github.copilot.completions.enabled && kilocode.ghost.enableQuickInlineTaskKeybinding"
+				"when": "editorTextFocus && !github.copilot.completions.enabled && godoty.ghost.enableQuickInlineTaskKeybinding"
 			},
 			{
-				"command": "kilo-code.ghost.showIncompatibilityExtensionPopup",
+				"command": "godoty.ghost.showIncompatibilityExtensionPopup",
 				"key": "ctrl+i",
 				"mac": "cmd+i",
-				"when": "editorTextFocus && github.copilot.completions.enabled && kilocode.ghost.enableQuickInlineTaskKeybinding"
+				"when": "editorTextFocus && github.copilot.completions.enabled && godoty.ghost.enableQuickInlineTaskKeybinding"
 			},
 			{
-				"command": "kilo-code.toggleAutoApprove",
+				"command": "godoty.toggleAutoApprove",
 				"key": "cmd+alt+a",
 				"mac": "cmd+alt+a",
 				"win": "ctrl+alt+a",
@@ -522,11 +521,11 @@
 		],
 		"submenus": [
 			{
-				"id": "kilo-code.contextMenu",
+				"id": "godoty.contextMenu",
 				"label": "%views.contextMenu.label%"
 			},
 			{
-				"id": "kilo-code.terminalMenu",
+				"id": "godoty.terminalMenu",
 				"label": "%views.terminalMenu.label%"
 			}
 		],
@@ -791,7 +790,6 @@
 		"@supabase/supabase-js": "^2.49.0"
 	},
 	"devDependencies": {
-		"@roo-code/build": "workspace:^",
 		"@roo-code/config-eslint": "workspace:^",
 		"@roo-code/config-typescript": "workspace:^",
 		"@types/clone-deep": "^4.0.4",

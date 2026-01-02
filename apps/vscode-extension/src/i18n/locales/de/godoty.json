@@ -175,9 +175,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "Deine Kilocode CLI-Version ist veraltet und unterstützt den Agent Manager nicht. Bitte aktualisiere auf die neueste Version.",
-			"cliNotFound": "Kilocode CLI nicht gefunden. Bitte installiere es, um den Agent Manager zu nutzen.",
-			"cliMisconfigured": "Kilocode CLI ist nicht konfiguriert. Bitte führe 'kilocode auth' aus, um dich anzumelden, oder 'kilocode config' zum Konfigurieren.",
+			"cliOutdated": "Deine Godoty CLI-Version ist veraltet und unterstützt den Agent Manager nicht. Bitte aktualisiere auf die neueste Version.",
+			"cliNotFound": "Godoty CLI nicht gefunden. Bitte installiere es, um den Agent Manager zu nutzen.",
+			"cliMisconfigured": "Godoty CLI ist nicht konfiguriert. Bitte führe 'godoty auth' aus, um dich anzumelden, oder 'godoty config' zum Konfigurieren.",
 			"sessionFailed": "Agent-Sitzung konnte nicht gestartet werden",
 			"sessionFailedWithMessage": "Agent-Sitzung konnte nicht gestartet werden: {{message}}"
 		},
@@ -186,16 +186,16 @@
 			"installInstructions": "Installationsanleitung",
 			"getHelp": "Hilfe erhalten",
 			"runInTerminal": "Im Terminal ausführen",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Global Aktualisieren",
 			"updateLocal": "Lokal Aktualisieren",
 			"installGlobal": "Global Installieren",
 			"installLocal": "Lokal Installieren"
 		},
 		"terminal": {
-			"installMessage": "Führe npm install aus, um die Kilocode CLI zu installieren. Sobald die Installation abgeschlossen ist, kannst du dieses Terminal schließen und versuchen, den Agent Manager erneut zu starten.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Führe npm install aus, um die Godoty CLI zu installieren. Sobald die Installation abgeschlossen ist, kannst du dieses Terminal schließen und versuchen, den Agent Manager erneut zu starten.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	}
 }
