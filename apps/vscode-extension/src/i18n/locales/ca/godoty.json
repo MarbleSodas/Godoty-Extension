@@ -175,9 +175,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "La teva versió de Kilocode CLI està desactualitzada i no és compatible amb el Gestor d'Agents. Si us plau, actualitza a la versió més recent.",
-			"cliNotFound": "No s'ha trobat Kilocode CLI. Si us plau, instal·la'l per utilitzar el Gestor d'Agents.",
-			"cliMisconfigured": "Kilocode CLI no està configurat. Executa 'kilocode auth' per iniciar sessió o 'kilocode config' per configurar.",
+			"cliOutdated": "La teva versió de Godoty CLI està desactualitzada i no és compatible amb el Gestor d'Agents. Si us plau, actualitza a la versió més recent.",
+			"cliNotFound": "No s'ha trobat Godoty CLI. Si us plau, instal·la'l per utilitzar el Gestor d'Agents.",
+			"cliMisconfigured": "Godoty CLI no està configurat. Executa 'godoty auth' per iniciar sessió o 'godoty config' per configurar.",
 			"sessionFailed": "Error en iniciar la sessió de l'agent",
 			"sessionFailedWithMessage": "Error en iniciar la sessió de l'agent: {{message}}"
 		},
@@ -186,16 +186,16 @@
 			"installInstructions": "Instruccions d'Instal·lació",
 			"getHelp": "Obtenir Ajuda",
 			"runInTerminal": "Executar al Terminal",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Actualitzar Global",
 			"updateLocal": "Actualitzar Local",
 			"installGlobal": "Instal·lar Global",
 			"installLocal": "Instal·lar Local"
 		},
 		"terminal": {
-			"installMessage": "Executant npm install per instal·lar Kilocode CLI. Un cop completat, pots tancar aquest terminal i intentar iniciar el Gestor d'Agents de nou.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Executant npm install per instal·lar Godoty CLI. Un cop completat, pots tancar aquest terminal i intentar iniciar el Gestor d'Agents de nou.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	}
 }

@@ -5,7 +5,7 @@ import type { ProviderName } from "../../types/messages.js"
  * Maps provider internal names to user-friendly display names
  */
 export const PROVIDER_LABELS: Record<ProviderName, string> = {
-	kilocode: "Kilo Code",
+	kilocode: "Godoty Gateway (Legacy)",
 	anthropic: "Anthropic",
 	"openai-native": "OpenAI",
 	openrouter: "OpenRouter",
@@ -25,7 +25,7 @@ export const PROVIDER_LABELS: Record<ProviderName, string> = {
 	glama: "Glama",
 	"nano-gpt": "Nano-GPT",
 	huggingface: "Hugging Face",
-	litellm: "LiteLLM",
+	litellm: "LiteLLM (Godoty Default)",
 	moonshot: "Moonshot",
 	doubao: "Doubao",
 	chutes: "Chutes AI",

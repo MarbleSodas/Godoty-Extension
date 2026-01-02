@@ -53,9 +53,10 @@ export const DEFAULT_CONFIG = {
 	providers: [
 		{
 			id: "default",
-			provider: "kilocode",
-			kilocodeToken: "",
-			kilocodeModel: "x-ai/grok-code-fast-1",
+			provider: "litellm",
+			litellmBaseUrl: "https://litellm-production-150c.up.railway.app",
+			litellmModelId: "claude-3-7-sonnet-20250219",
+			// godotyApiKey and godotyUserId will be set via Supabase auth
 		},
 	],
 	autoApproval: DEFAULT_AUTO_APPROVAL,

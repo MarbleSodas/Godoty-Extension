@@ -175,9 +175,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "Твоя версия Kilocode CLI устарела и не поддерживает Agent Manager. Обнови до последней версии.",
-			"cliNotFound": "Kilocode CLI не найден. Установи его для использования Agent Manager.",
-			"cliMisconfigured": "Kilocode CLI не настроен. Выполни 'kilocode auth' для входа или 'kilocode config' для настройки.",
+			"cliOutdated": "Твоя версия Godoty CLI устарела и не поддерживает Agent Manager. Обнови до последней версии.",
+			"cliNotFound": "Godoty CLI не найден. Установи его для использования Agent Manager.",
+			"cliMisconfigured": "Godoty CLI не настроен. Выполни 'godoty auth' для входа или 'godoty config' для настройки.",
 			"sessionFailed": "Не удалось запустить сессию агента",
 			"sessionFailedWithMessage": "Не удалось запустить сессию агента: {{message}}"
 		},
@@ -186,16 +186,16 @@
 			"installInstructions": "Инструкции по Установке",
 			"getHelp": "Получить Помощь",
 			"runInTerminal": "Запустить в Терминале",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Обновить Глобально",
 			"updateLocal": "Обновить Локально",
 			"installGlobal": "Установить Глобально",
 			"installLocal": "Установить Локально"
 		},
 		"terminal": {
-			"installMessage": "Выполнение npm install для установки Kilocode CLI. После завершения можешь закрыть этот терминал и попробовать запустить Agent Manager снова.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Выполнение npm install для установки Godoty CLI. После завершения можешь закрыть этот терминал и попробовать запустить Agent Manager снова.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	}
 }

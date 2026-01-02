@@ -49,9 +49,9 @@ export class GodotyAuthClient {
           persistSession: true,
           detectSessionInUrl: false,
           storage: {
-            getItem: (key) => this.getStoredItem(key),
-            setItem: (key, value) => this.setStoredItem(key, value),
-            removeItem: (key) => this.removeStoredItem(key)
+            getItem: (key: string) => this.getStoredItem(key),
+            setItem: (key: string, value: string) => this.setStoredItem(key, value),
+            removeItem: (key: string) => this.removeStoredItem(key)
           }
         }
       }

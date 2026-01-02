@@ -175,9 +175,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "La tua versione di Kilocode CLI è obsoleta e non supporta l'Agent Manager. Aggiorna all'ultima versione.",
-			"cliNotFound": "Kilocode CLI non trovato. Installalo per utilizzare l'Agent Manager.",
-			"cliMisconfigured": "Kilocode CLI non è configurato. Esegui 'kilocode auth' per accedere o 'kilocode config' per configurare.",
+			"cliOutdated": "La tua versione di Godoty CLI è obsoleta e non supporta l'Agent Manager. Aggiorna all'ultima versione.",
+			"cliNotFound": "Godoty CLI non trovato. Installalo per utilizzare l'Agent Manager.",
+			"cliMisconfigured": "Godoty CLI non è configurato. Esegui 'godoty auth' per accedere o 'godoty config' per configurare.",
 			"sessionFailed": "Impossibile avviare la sessione dell'agente",
 			"sessionFailedWithMessage": "Impossibile avviare la sessione dell'agente: {{message}}"
 		},
@@ -186,16 +186,16 @@
 			"installInstructions": "Istruzioni di Installazione",
 			"getHelp": "Ottieni Aiuto",
 			"runInTerminal": "Esegui nel Terminale",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Aggiorna Globale",
 			"updateLocal": "Aggiorna Locale",
 			"installGlobal": "Installa Globale",
 			"installLocal": "Installa Locale"
 		},
 		"terminal": {
-			"installMessage": "Esecuzione di npm install per installare Kilocode CLI. Una volta completato, puoi chiudere questo terminale e provare ad avviare nuovamente l'Agent Manager.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Esecuzione di npm install per installare Godoty CLI. Una volta completato, puoi chiudere questo terminale e provare ad avviare nuovamente l'Agent Manager.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	}
 }

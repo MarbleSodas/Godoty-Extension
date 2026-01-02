@@ -104,9 +104,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "Twoja wersja Kilocode CLI jest przestarzała i nie obsługuje Agent Managera. Zaktualizuj do najnowszej wersji.",
-			"cliNotFound": "Nie znaleziono Kilocode CLI. Zainstaluj go, aby korzystać z Agent Managera.",
-			"cliMisconfigured": "Kilocode CLI nie jest skonfigurowany. Uruchom 'kilocode auth', aby się zalogować lub 'kilocode config', aby skonfigurować.",
+			"cliOutdated": "Twoja wersja Godoty CLI jest przestarzała i nie obsługuje Agent Managera. Zaktualizuj do najnowszej wersji.",
+			"cliNotFound": "Nie znaleziono Godoty CLI. Zainstaluj go, aby korzystać z Agent Managera.",
+			"cliMisconfigured": "Godoty CLI nie jest skonfigurowany. Uruchom 'godoty auth', aby się zalogować lub 'godoty config', aby skonfigurować.",
 			"sessionFailed": "Nie udało się uruchomić sesji agenta",
 			"sessionFailedWithMessage": "Nie udało się uruchomić sesji agenta: {{message}}"
 		},
@@ -115,16 +115,16 @@
 			"installInstructions": "Instrukcje Instalacji",
 			"getHelp": "Uzyskaj Pomoc",
 			"runInTerminal": "Uruchom w Terminalu",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Aktualizuj Globalnie",
 			"updateLocal": "Aktualizuj Lokalnie",
 			"installGlobal": "Zainstaluj Globalnie",
 			"installLocal": "Zainstaluj Lokalnie"
 		},
 		"terminal": {
-			"installMessage": "Uruchamianie npm install w celu zainstalowania Kilocode CLI. Po zakończeniu możesz zamknąć ten terminal i spróbować ponownie uruchomić Agent Managera.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Uruchamianie npm install w celu zainstalowania Godoty CLI. Po zakończeniu możesz zamknąć ten terminal i spróbować ponownie uruchomić Agent Managera.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	},
 	"ghost": {

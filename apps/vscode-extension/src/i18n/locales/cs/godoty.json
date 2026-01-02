@@ -104,9 +104,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "Tvoje verze Kilocode CLI je zastaralá a nepodporuje Agent Manager. Prosím aktualizuj na nejnovější verzi.",
-			"cliNotFound": "Kilocode CLI nenalezeno. Prosím nainstaluj ho pro použití Agent Manageru.",
-			"cliMisconfigured": "Kilocode CLI není nakonfigurováno. Spusť 'kilocode auth' pro přihlášení nebo 'kilocode config' pro konfiguraci.",
+			"cliOutdated": "Tvoje verze Godoty CLI je zastaralá a nepodporuje Agent Manager. Prosím aktualizuj na nejnovější verzi.",
+			"cliNotFound": "Godoty CLI nenalezeno. Prosím nainstaluj ho pro použití Agent Manageru.",
+			"cliMisconfigured": "Godoty CLI není nakonfigurováno. Spusť 'godoty auth' pro přihlášení nebo 'godoty config' pro konfiguraci.",
 			"sessionFailed": "Nepodařilo se spustit relaci agenta",
 			"sessionFailedWithMessage": "Nepodařilo se spustit relaci agenta: {{message}}"
 		},
@@ -115,16 +115,16 @@
 			"installInstructions": "Instrukce k Instalaci",
 			"getHelp": "Získat Pomoc",
 			"runInTerminal": "Spustit v Terminálu",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "Aktualizovat Globálně",
 			"updateLocal": "Aktualizovat Lokálně",
 			"installGlobal": "Instalovat Globálně",
 			"installLocal": "Instalovat Lokálně"
 		},
 		"terminal": {
-			"installMessage": "Spouštím npm install pro instalaci Kilocode CLI. Po dokončení můžeš tento terminál zavřít a zkusit Agent Manager spustit znovu.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "Spouštím npm install pro instalaci Godoty CLI. Po dokončení můžeš tento terminál zavřít a zkusit Agent Manager spustit znovu.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	},
 	"ghost": {

@@ -179,9 +179,9 @@
 	},
 	"agentManager": {
 		"errors": {
-			"cliOutdated": "إصدار Kilocode CLI لديك قديم ولا يدعم مدير الوكلاء. يرجى التحديث إلى أحدث إصدار.",
-			"cliNotFound": "لم يتم العثور على Kilocode CLI. يرجى تثبيته لاستخدام مدير الوكلاء.",
-			"cliMisconfigured": "Kilocode CLI غير مُهيأ. قم بتشغيل 'kilocode auth' لتسجيل الدخول أو 'kilocode config' للإعداد.",
+			"cliOutdated": "إصدار Godoty CLI لديك قديم ولا يدعم مدير الوكلاء. يرجى التحديث إلى أحدث إصدار.",
+			"cliNotFound": "لم يتم العثور على Godoty CLI. يرجى تثبيته لاستخدام مدير الوكلاء.",
+			"cliMisconfigured": "Godoty CLI غير مُهيأ. قم بتشغيل 'godoty auth' لتسجيل الدخول أو 'godoty config' للإعداد.",
 			"sessionFailed": "فشل بدء جلسة الوكيل",
 			"sessionFailedWithMessage": "فشل بدء جلسة الوكيل: {{message}}"
 		},
@@ -190,16 +190,16 @@
 			"installInstructions": "تعليمات التثبيت",
 			"getHelp": "الحصول على المساعدة",
 			"runInTerminal": "تشغيل في الطرفية",
-			"loginCli": "Run kilocode auth",
-			"configureCli": "Run kilocode config",
+			"loginCli": "Run godoty auth",
+			"configureCli": "Run godoty config",
 			"updateGlobal": "تحديث عام",
 			"updateLocal": "تحديث محلي",
 			"installGlobal": "تثبيت عام",
 			"installLocal": "تثبيت محلي"
 		},
 		"terminal": {
-			"installMessage": "تشغيل npm install لتثبيت Kilocode CLI. بمجرد الانتهاء، يمكنك إغلاق هذه الطرفية ومحاولة بدء Agent Manager مرة أخرى.",
-			"authReminder": "If this is your first install, run `kilocode auth` to sign in before starting the Agent Manager."
+			"installMessage": "تشغيل npm install لتثبيت Godoty CLI. بمجرد الانتهاء، يمكنك إغلاق هذه الطرفية ومحاولة بدء Agent Manager مرة أخرى.",
+			"authReminder": "If this is your first install, run `godoty auth` to sign in before starting the Agent Manager."
 		}
 	}
 }
