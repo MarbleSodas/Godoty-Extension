@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+out/
+build/
+*.vsix
+*.zip
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Turbo
+.turbo/
+
+# Godot
+godot-plugin/.godot/
+godot-plugin/*.import
+godot-plugin/export_presets.cfg
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Secrets (never commit)
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# Large media files (use Git LFS or external hosting)
+*.mp4
+*.gif
+*.mov
+*.avi
+*.webm
+apps/vscode-extension/releases/
+apps/vscode-extension/kilo.gif
+apps/vscode-extension/src/assets/docs/demo.gif
+apps/vscode-extension/apps/kilocode-docs/static/img/
+apps/vscode-extension/apps/kilocode-docs/static/videos/
