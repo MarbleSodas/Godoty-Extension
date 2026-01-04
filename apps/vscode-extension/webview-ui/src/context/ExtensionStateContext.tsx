@@ -47,6 +47,12 @@ export interface ExtensionStateContextType extends ExtensionState {
 	dismissedNotificationIds: string[] // kilocode_change
 	yoloMode?: boolean // kilocode_change
 	setYoloMode: (value: boolean) => void // kilocode_Change
+	// godoty_change start
+	godotyAuthenticated?: boolean
+	godotyAuthPending?: boolean
+	godotyUserEmail?: string | null
+	godotyUserName?: string | null
+	// godoty_change end
 	// kilocode_change start - Auto-purge settings
 	autoPurgeEnabled?: boolean
 	setAutoPurgeEnabled: (value: boolean) => void
@@ -524,6 +530,18 @@ export const ExtensionStateContextProvider: React.FC<{ children: React.ReactNode
 					}
 					break
 				}
+				// godoty_change start
+				case "godotyAuthStatus": {
+					setState((prevState) => ({
+						...prevState,
+						godotyAuthenticated: message.godotyAuthenticated,
+						godotyAuthPending: message.godotyAuthPending,
+						godotyUserEmail: message.godotyUserEmail,
+						godotyUserName: message.godotyUserName,
+					}))
+					break
+				}
+				// godoty_change end
 			}
 		},
 		[setListApiConfigMeta],

@@ -52,7 +52,13 @@ import { flushModels, getModels, initializeModelCacheRefresh } from "./api/provi
 import { kilo_initializeSessionManager } from "./shared/kilocode/cli-sessions/extension/session-manager-utils" // kilocode_change
 
 // godoty_change start
-import { GodotyAuthService, GodotyMCPService, GodotStatusBar, UserStatusBar } from "./services/godoty"
+import {
+	GodotyAuthService,
+	GodotyAuthRegistry,
+	GodotyMCPService,
+	GodotStatusBar,
+	UserStatusBar,
+} from "./services/godoty"
 // godoty_change end
 
 // kilocode_change start
@@ -106,7 +112,7 @@ let userStatusBar: UserStatusBar | undefined
 // Your extension is activated the very first time the command is executed.
 export async function activate(context: vscode.ExtensionContext) {
 	extensionContext = context
-	outputChannel = vscode.window.createOutputChannel("Kilo-Code")
+	outputChannel = vscode.window.createOutputChannel("Godoty")
 	context.subscriptions.push(outputChannel)
 	outputChannel.appendLine(`${Package.name} extension activated - ${JSON.stringify(Package)}`)
 
@@ -356,17 +362,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	// kilocode_change start
 	if (!context.globalState.get("firstInstallCompleted")) {
-		outputChannel.appendLine("First installation detected, opening Kilo Code sidebar!")
+		outputChannel.appendLine("First installation detected, opening Godoty sidebar!")
 		try {
-			await vscode.commands.executeCommand("kilo-code.SidebarProvider.focus")
+			await vscode.commands.executeCommand("godoty.SidebarProvider.focus")
 
-			outputChannel.appendLine("Opening Kilo Code walkthrough")
+			outputChannel.appendLine("Opening Godoty walkthrough")
 
 			// this can crash, see:
 			// https://discord.com/channels/1349288496988160052/1395865796026040470
 			await vscode.commands.executeCommand(
 				"workbench.action.openWalkthrough",
-				"kilocode.kilo-code#kiloCodeWalkthrough",
+				"godoty.godoty-extension#godotyWalkthrough",
 				false,
 			)
 
@@ -437,58 +443,61 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	registerCommands({ context, outputChannel, provider })
 
-	// godoty_change start - Initialize Godoty services
+	// godoty_change start
+	context.subscriptions.push(
+		vscode.commands.registerCommand("godoty.signIn", () => godotyAuth?.signIn()),
+		vscode.commands.registerCommand("godoty.signOut", () => godotyAuth?.signOut()),
+		vscode.commands.registerCommand("godoty.showUserMenu", () => showGodotyUserMenu()),
+		vscode.commands.registerCommand("godoty.showConnectionMenu", () => showGodotyConnectionMenu()),
+	)
+
 	try {
 		godotyAuth = new GodotyAuthService(context, outputChannel)
-		godotyMcp = new GodotyMCPService(context, outputChannel)
+		GodotyAuthRegistry.register(godotyAuth)
 		godotStatusBar = new GodotStatusBar()
 		userStatusBar = new UserStatusBar()
 
-		await godotyAuth.initialize()
-
-		godotyAuth.onAuthStateChange(({ user }) => {
+		// godoty_change: Register handler BEFORE initialize() so we catch the auth event
+		godotyAuth.onAuthStateChange(async ({ user }) => {
 			if (user && userStatusBar) {
 				userStatusBar.setUser(user)
 			} else if (userStatusBar) {
 				userStatusBar.setSignedOut()
 			}
+			const provider = await ClineProvider.getInstance()
+			if (provider) {
+				await provider.postGodotyAuthStatus()
+			}
 		})
+
+		await godotyAuth.initialize()
+
+		// godoty_change: Explicitly post auth status after initialization completes
+		// This ensures the webview receives the correct auth state after _isInitialized is set to true
+		const initializedProvider = await ClineProvider.getInstance()
+		if (initializedProvider) {
+			await initializedProvider.postGodotyAuthStatus()
+		}
 
 		const currentUser = godotyAuth.getUser()
 		if (currentUser && userStatusBar) {
 			userStatusBar.setUser(currentUser)
 		}
 
-		godotyMcp.onConnectionChange((connected) => {
-			if (godotStatusBar) {
-				if (connected) {
-					godotStatusBar.setConnected()
-				} else {
-					godotStatusBar.setDisconnected()
-				}
-			}
-		})
+		// DISABLED: MCP server not built yet - uncomment when packages/godoty-mcp is bundled
+		// godotyMcp = new GodotyMCPService(context, outputChannel)
+		// godotyMcp.onConnectionChange((connected) => {
+		// 	if (godotStatusBar) {
+		// 		if (connected) {
+		// 			godotStatusBar.setConnected()
+		// 		} else {
+		// 			godotStatusBar.setDisconnected()
+		// 		}
+		// 	}
+		// })
+		// await godotyMcp.start()
 
-		await godotyMcp.start()
-
-		context.subscriptions.push(
-			vscode.commands.registerCommand("godoty.signIn", () => godotyAuth?.signIn()),
-			vscode.commands.registerCommand("godoty.signOut", () => godotyAuth?.signOut()),
-			vscode.commands.registerCommand("godoty.showUserMenu", () => showGodotyUserMenu()),
-			vscode.commands.registerCommand("godoty.showConnectionMenu", () => showGodotyConnectionMenu()),
-		)
-
-		context.subscriptions.push(
-			vscode.window.registerUriHandler({
-				handleUri(uri: vscode.Uri) {
-					if (uri.path === "/auth/callback") {
-						godotyAuth?.handleOAuthCallback(uri)
-					}
-				},
-			}),
-		)
-
-		context.subscriptions.push(godotyAuth, godotyMcp, godotStatusBar, userStatusBar)
+		context.subscriptions.push(godotyAuth, godotStatusBar, userStatusBar)
 		outputChannel.appendLine("[Godoty] Services initialized successfully")
 	} catch (error) {
 		outputChannel.appendLine(
@@ -658,7 +667,7 @@ export async function deactivate() {
 	TerminalRegistry.cleanup()
 
 	// godoty_change start
-	godotyMcp?.stop()
+	// godotyMcp?.stop() // DISABLED: MCP not initialized
 	// godoty_change end
 }
 

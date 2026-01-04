@@ -196,6 +196,9 @@ export interface ExtensionMessage {
 		| "deviceAuthFailed" // kilocode_change: Device auth failed
 		| "deviceAuthCancelled" // kilocode_change: Device auth cancelled
 		| "chatCompletionResult" // kilocode_change: FIM completion result for chat text area
+		// godoty_change start: Godoty auth messages
+		| "godotyAuthStatus" // Godoty authentication status update
+	// godoty_change end
 	text?: string
 	// kilocode_change start
 	completionRequestId?: string // Correlation ID from request
@@ -360,6 +363,12 @@ export interface ExtensionMessage {
 	deviceAuthUserEmail?: string
 	deviceAuthError?: string
 	// kilocode_change end: Device auth data
+	// godoty_change start
+	godotyAuthenticated?: boolean
+	godotyAuthPending?: boolean
+	godotyUserEmail?: string | null
+	godotyUserName?: string | null
+	// godoty_change end
 }
 
 export type ExtensionState = Pick<
@@ -541,6 +550,12 @@ export type ExtensionState = Pick<
 	showTimestamps?: boolean // kilocode_change: Show timestamps in chat messages
 	debug?: boolean
 	speechToTextStatus?: { available: boolean; reason?: "openaiKeyMissing" | "ffmpegNotInstalled" } // kilocode_change: Speech-to-text availability status with failure reason
+	// godoty_change start
+	godotyAuthenticated?: boolean
+	godotyAuthPending?: boolean
+	godotyUserEmail?: string | null
+	godotyUserName?: string | null
+	// godoty_change end
 }
 
 export interface ClineSayTool {

@@ -20,6 +20,8 @@ export class GodotyAuthService implements vscode.Disposable {
 	private context: vscode.ExtensionContext
 	private outputChannel: vscode.OutputChannel
 	private disposables: vscode.Disposable[] = []
+	private refreshTimer: NodeJS.Timeout | null = null
+	private static readonly TOKEN_REFRESH_INTERVAL_MS = 60000
 
 	private _onAuthStateChange = new vscode.EventEmitter<GodotyAuthState>()
 	readonly onAuthStateChange = this._onAuthStateChange.event
@@ -29,6 +31,19 @@ export class GodotyAuthService implements vscode.Disposable {
 		session: null,
 		apiKey: null,
 	}
+
+	// godoty_change start: Track initialization state to help with timing issues
+	private _isInitializing = false
+	private _isInitialized = false
+
+	get isInitializing(): boolean {
+		return this._isInitializing
+	}
+
+	get isInitialized(): boolean {
+		return this._isInitialized
+	}
+	// godoty_change end
 
 	constructor(context: vscode.ExtensionContext, outputChannel: vscode.OutputChannel) {
 		this.context = context
@@ -61,9 +76,11 @@ export class GodotyAuthService implements vscode.Disposable {
 
 			if (session) {
 				await this.syncApiKey()
+				this.startTokenRefreshTimer()
 			} else {
 				this.currentState.apiKey = null
 				await this.clearProviderSettings()
+				this.stopTokenRefreshTimer()
 			}
 
 			this._onAuthStateChange.fire({ ...this.currentState })
@@ -74,6 +91,7 @@ export class GodotyAuthService implements vscode.Disposable {
 
 	async initialize(): Promise<void> {
 		this.log("Initializing Godoty auth service")
+		this._isInitializing = true
 
 		try {
 			const {
@@ -83,10 +101,53 @@ export class GodotyAuthService implements vscode.Disposable {
 				this.currentState.session = session
 				this.currentState.user = session.user
 				await this.syncApiKey()
+				this.startTokenRefreshTimer()
 				this.log(`Restored session for ${session.user.email}`)
 			}
+			this._isInitialized = true
+			this._isInitializing = false
+			this._onAuthStateChange.fire({ ...this.currentState })
 		} catch (error) {
+			this._isInitialized = true
+			this._isInitializing = false
 			this.log(`Failed to restore session: ${error instanceof Error ? error.message : String(error)}`)
+			this._onAuthStateChange.fire({ ...this.currentState })
+		}
+	}
+
+	private startTokenRefreshTimer(): void {
+		this.stopTokenRefreshTimer()
+		this.refreshTimer = setInterval(() => this.checkAndRefreshToken(), GodotyAuthService.TOKEN_REFRESH_INTERVAL_MS)
+	}
+
+	private stopTokenRefreshTimer(): void {
+		if (this.refreshTimer) {
+			clearInterval(this.refreshTimer)
+			this.refreshTimer = null
+		}
+	}
+
+	private async checkAndRefreshToken(): Promise<void> {
+		const session = this.currentState.session
+		if (!session?.expires_at) return
+
+		const now = Math.floor(Date.now() / 1000)
+		const expiresIn = session.expires_at - now
+
+		if (expiresIn < 300) {
+			this.log("Token expiring soon, refreshing...")
+			try {
+				const { data, error } = await this.supabase.auth.refreshSession()
+				if (error) {
+					this.log(`Token refresh failed: ${error.message}`)
+					return
+				}
+				if (data.session) {
+					this.log("Token refreshed successfully")
+				}
+			} catch (error) {
+				this.log(`Token refresh error: ${error instanceof Error ? error.message : String(error)}`)
+			}
 		}
 	}
 
@@ -110,10 +171,13 @@ export class GodotyAuthService implements vscode.Disposable {
 	private async signInWithOAuth(provider: AuthProvider): Promise<void> {
 		this.log(`Starting OAuth flow with ${provider}`)
 
+		const redirectTo = `${vscode.env.uriScheme}://${Package.publisher}.${Package.name}/auth/callback`
+		this.log(`OAuth redirect URL: ${redirectTo}`)
+
 		const { data, error } = await this.supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: `vscode://${Package.publisher}.${Package.name}/auth/callback`,
+				redirectTo,
 				skipBrowserRedirect: true,
 			},
 		})
@@ -125,6 +189,7 @@ export class GodotyAuthService implements vscode.Disposable {
 		}
 
 		if (data.url) {
+			this.log(`Opening OAuth URL in browser`)
 			await vscode.env.openExternal(vscode.Uri.parse(data.url))
 			vscode.window.showInformationMessage("Complete sign-in in your browser, then return here.")
 		}
@@ -134,7 +199,7 @@ export class GodotyAuthService implements vscode.Disposable {
 		this.log(`Handling OAuth callback: ${uri.toString().substring(0, 100)}...`)
 
 		try {
-			const fragment = uri.fragment
+			const fragment = decodeURIComponent(uri.fragment)
 			const params = new URLSearchParams(fragment)
 			const accessToken = params.get("access_token")
 			const refreshToken = params.get("refresh_token")
@@ -253,6 +318,7 @@ export class GodotyAuthService implements vscode.Disposable {
 	}
 
 	dispose(): void {
+		this.stopTokenRefreshTimer()
 		this.disposables.forEach((d) => d.dispose())
 	}
 }

@@ -32,6 +32,7 @@ import { TooltipProvider } from "./components/ui/tooltip"
 import { STANDARD_TOOLTIP_DELAY } from "./components/ui/standard-tooltip"
 import { useKiloIdentity } from "./utils/kilocode/useKiloIdentity"
 import { MemoryWarningBanner } from "./kilocode/MemoryWarningBanner"
+import { AuthGuard } from "./components/godoty" // godoty_change
 
 type Tab = "settings" | "history" | "mcp" | "modes" | "chat" | "marketplace" | "account" | "cloud" | "profile" | "auth" // kilocode_change: add "profile" and "auth"
 
@@ -322,37 +323,40 @@ const App = () => {
 	// Do not conditionally load ChatView, it's expensive and there's state we
 	// don't want to lose (user input, disableInput, askResponse promise, etc.)
 	// kilocode_change: no WelcomeViewProvider toggle
-	return showWelcome ? (
-		<WelcomeView />
-	) : (
-		<>
-			{/* kilocode_change start */}
-			<MemoryWarningBanner />
-			{tab === "mcp" && <McpView onDone={() => switchTab("chat")} />}
-			{/* kilocode_change end */}
-			{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
-			{/* kilocode_change: auth redirect / editingProfile */}
-			{tab === "settings" && (
-				<SettingsView
-					ref={settingsRef}
-					onDone={() => switchTab("chat")}
-					targetSection={currentSection}
-					editingProfile={settingsEditingProfile}
-				/>
-			)}
-			{/* kilocode_change: add profileview and authview */}
-			{tab === "profile" && <ProfileView onDone={() => switchTab("chat")} />}
-			{tab === "auth" && <AuthView returnTo={authReturnTo} profileName={authProfileName} />}
-			{tab === "marketplace" && (
-				<MarketplaceView
-					stateManager={marketplaceStateManager}
-					onDone={() => switchTab("chat")}
-					// kilocode_change: targetTab="mode"
-					targetTab="mode"
-				/>
-			)}
-			{/* kilocode_change: no cloud view */}
-			{/* {tab === "cloud" && (
+	// godoty_change: wrap with AuthGuard
+	return (
+		<AuthGuard>
+			{showWelcome ? (
+				<WelcomeView />
+			) : (
+				<>
+					{/* kilocode_change start */}
+					<MemoryWarningBanner />
+					{tab === "mcp" && <McpView onDone={() => switchTab("chat")} />}
+					{/* kilocode_change end */}
+					{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
+					{/* kilocode_change: auth redirect / editingProfile */}
+					{tab === "settings" && (
+						<SettingsView
+							ref={settingsRef}
+							onDone={() => switchTab("chat")}
+							targetSection={currentSection}
+							editingProfile={settingsEditingProfile}
+						/>
+					)}
+					{/* kilocode_change: add profileview and authview */}
+					{tab === "profile" && <ProfileView onDone={() => switchTab("chat")} />}
+					{tab === "auth" && <AuthView returnTo={authReturnTo} profileName={authProfileName} />}
+					{tab === "marketplace" && (
+						<MarketplaceView
+							stateManager={marketplaceStateManager}
+							onDone={() => switchTab("chat")}
+							// kilocode_change: targetTab="mode"
+							targetTab="mode"
+						/>
+					)}
+					{/* kilocode_change: no cloud view */}
+					{/* {tab === "cloud" && (
 				<CloudView
 					userInfo={cloudUserInfo}
 					isAuthenticated={cloudIsAuthenticated}
@@ -360,91 +364,103 @@ const App = () => {
 					organizations={cloudOrganizations}
 				/>
 			)} */}
-			{/* kilocode_change: we have our own profile view */}
-			{/* {tab === "account" && (
+					{/* kilocode_change: we have our own profile view */}
+					{/* {tab === "account" && (
 				<AccountView userInfo={cloudUserInfo} isAuthenticated={false} onDone={() => switchTab("chat")} />
 			)} */}
-			<ChatView
-				ref={chatViewRef}
-				isHidden={tab !== "chat"}
-				showAnnouncement={showAnnouncement}
-				hideAnnouncement={() => setShowAnnouncement(false)}
-			/>
-			<MemoizedHumanRelayDialog
-				isOpen={humanRelayDialogState.isOpen}
-				requestId={humanRelayDialogState.requestId}
-				promptText={humanRelayDialogState.promptText}
-				onClose={() => setHumanRelayDialogState((prev) => ({ ...prev, isOpen: false }))}
-				onSubmit={(requestId, text) => vscode.postMessage({ type: "humanRelayResponse", requestId, text })}
-				onCancel={(requestId) => vscode.postMessage({ type: "humanRelayCancel", requestId })}
-			/>
-			{deleteMessageDialogState.hasCheckpoint ? (
-				<MemoizedCheckpointRestoreDialog
-					open={deleteMessageDialogState.isOpen}
-					type="delete"
-					hasCheckpoint={deleteMessageDialogState.hasCheckpoint}
-					onOpenChange={(open: boolean) => setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: open }))}
-					onConfirm={(restoreCheckpoint: boolean) => {
-						vscode.postMessage({
-							type: "deleteMessageConfirm",
-							messageTs: deleteMessageDialogState.messageTs,
-							restoreCheckpoint,
-						})
-						setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: false }))
-					}}
-				/>
-			) : (
-				<MemoizedDeleteMessageDialog
-					open={deleteMessageDialogState.isOpen}
-					onOpenChange={(open: boolean) => setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: open }))}
-					onConfirm={() => {
-						vscode.postMessage({
-							type: "deleteMessageConfirm",
-							messageTs: deleteMessageDialogState.messageTs,
-						})
-						setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: false }))
-					}}
-				/>
+					<ChatView
+						ref={chatViewRef}
+						isHidden={tab !== "chat"}
+						showAnnouncement={showAnnouncement}
+						hideAnnouncement={() => setShowAnnouncement(false)}
+					/>
+					<MemoizedHumanRelayDialog
+						isOpen={humanRelayDialogState.isOpen}
+						requestId={humanRelayDialogState.requestId}
+						promptText={humanRelayDialogState.promptText}
+						onClose={() => setHumanRelayDialogState((prev) => ({ ...prev, isOpen: false }))}
+						onSubmit={(requestId, text) =>
+							vscode.postMessage({ type: "humanRelayResponse", requestId, text })
+						}
+						onCancel={(requestId) => vscode.postMessage({ type: "humanRelayCancel", requestId })}
+					/>
+					{deleteMessageDialogState.hasCheckpoint ? (
+						<MemoizedCheckpointRestoreDialog
+							open={deleteMessageDialogState.isOpen}
+							type="delete"
+							hasCheckpoint={deleteMessageDialogState.hasCheckpoint}
+							onOpenChange={(open: boolean) =>
+								setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: open }))
+							}
+							onConfirm={(restoreCheckpoint: boolean) => {
+								vscode.postMessage({
+									type: "deleteMessageConfirm",
+									messageTs: deleteMessageDialogState.messageTs,
+									restoreCheckpoint,
+								})
+								setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: false }))
+							}}
+						/>
+					) : (
+						<MemoizedDeleteMessageDialog
+							open={deleteMessageDialogState.isOpen}
+							onOpenChange={(open: boolean) =>
+								setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: open }))
+							}
+							onConfirm={() => {
+								vscode.postMessage({
+									type: "deleteMessageConfirm",
+									messageTs: deleteMessageDialogState.messageTs,
+								})
+								setDeleteMessageDialogState((prev) => ({ ...prev, isOpen: false }))
+							}}
+						/>
+					)}
+					{editMessageDialogState.hasCheckpoint ? (
+						<MemoizedCheckpointRestoreDialog
+							open={editMessageDialogState.isOpen}
+							type="edit"
+							hasCheckpoint={editMessageDialogState.hasCheckpoint}
+							onOpenChange={(open: boolean) =>
+								setEditMessageDialogState((prev) => ({ ...prev, isOpen: open }))
+							}
+							onConfirm={(restoreCheckpoint: boolean) => {
+								vscode.postMessage({
+									type: "editMessageConfirm",
+									messageTs: editMessageDialogState.messageTs,
+									text: editMessageDialogState.text,
+									restoreCheckpoint,
+								})
+								setEditMessageDialogState((prev) => ({ ...prev, isOpen: false }))
+							}}
+						/>
+					) : (
+						<MemoizedEditMessageDialog
+							open={editMessageDialogState.isOpen}
+							onOpenChange={(open: boolean) =>
+								setEditMessageDialogState((prev) => ({ ...prev, isOpen: open }))
+							}
+							onConfirm={() => {
+								vscode.postMessage({
+									type: "editMessageConfirm",
+									messageTs: editMessageDialogState.messageTs,
+									text: editMessageDialogState.text,
+									images: editMessageDialogState.images,
+								})
+								setEditMessageDialogState((prev) => ({ ...prev, isOpen: false }))
+							}}
+						/>
+					)}
+					{/* kilocode_change */}
+					{/* Chat, and history view contain their own bottom controls, settings doesn't need it */}
+					{!["chat", "settings", "history"].includes(tab) && (
+						<div className="fixed inset-0 top-auto">
+							<BottomControls />
+						</div>
+					)}
+				</>
 			)}
-			{editMessageDialogState.hasCheckpoint ? (
-				<MemoizedCheckpointRestoreDialog
-					open={editMessageDialogState.isOpen}
-					type="edit"
-					hasCheckpoint={editMessageDialogState.hasCheckpoint}
-					onOpenChange={(open: boolean) => setEditMessageDialogState((prev) => ({ ...prev, isOpen: open }))}
-					onConfirm={(restoreCheckpoint: boolean) => {
-						vscode.postMessage({
-							type: "editMessageConfirm",
-							messageTs: editMessageDialogState.messageTs,
-							text: editMessageDialogState.text,
-							restoreCheckpoint,
-						})
-						setEditMessageDialogState((prev) => ({ ...prev, isOpen: false }))
-					}}
-				/>
-			) : (
-				<MemoizedEditMessageDialog
-					open={editMessageDialogState.isOpen}
-					onOpenChange={(open: boolean) => setEditMessageDialogState((prev) => ({ ...prev, isOpen: open }))}
-					onConfirm={() => {
-						vscode.postMessage({
-							type: "editMessageConfirm",
-							messageTs: editMessageDialogState.messageTs,
-							text: editMessageDialogState.text,
-							images: editMessageDialogState.images,
-						})
-						setEditMessageDialogState((prev) => ({ ...prev, isOpen: false }))
-					}}
-				/>
-			)}
-			{/* kilocode_change */}
-			{/* Chat, and history view contain their own bottom controls, settings doesn't need it */}
-			{!["chat", "settings", "history"].includes(tab) && (
-				<div className="fixed inset-0 top-auto">
-					<BottomControls />
-				</div>
-			)}
-		</>
+		</AuthGuard>
 	)
 }
 

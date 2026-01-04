@@ -1,4 +1,5 @@
 export { GodotyAuthService } from "./GodotyAuthService"
+export { GodotyAuthRegistry } from "./GodotyAuthRegistry"
 export { GodotyMCPService } from "./GodotyMCPService"
 export { GodotStatusBar } from "./GodotStatusBar"
 export { UserStatusBar } from "./UserStatusBar"

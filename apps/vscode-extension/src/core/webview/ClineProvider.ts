@@ -805,7 +805,7 @@ ${prompt}
 				invoke: "setChatBoxMessage",
 				text: messageText,
 			})
-			await vscode.commands.executeCommand("kilo-code.focusChatInput")
+			await vscode.commands.executeCommand("godoty.focusChatInput")
 			return
 		}
 		// kilocode_change end
@@ -1181,6 +1181,30 @@ ${prompt}
 
 		await this.view?.webview.postMessage(message)
 	}
+
+	// godoty_change start
+	public async postGodotyAuthStatus() {
+		const { GodotyAuthRegistry } = await import("../../services/godoty")
+		const auth = GodotyAuthRegistry.get()
+		const isInitializing = auth?.isInitializing ?? false
+		const isInitialized = auth?.isInitialized ?? false
+		const isAuthenticated = auth?.isAuthenticated() ?? false
+		const hasUser = auth?.getUser() !== null
+		const hasApiKey = auth?.getApiKey() !== null
+
+		this.log(
+			`[GodotyAuth Debug] postGodotyAuthStatus: isInitialized=${isInitialized}, isInitializing=${isInitializing}, isAuthenticated=${isAuthenticated}, hasUser=${hasUser}, hasApiKey=${hasApiKey}, hasView=${!!this.view}`,
+		)
+
+		await this.postMessageToWebview({
+			type: "godotyAuthStatus",
+			godotyAuthenticated: isAuthenticated,
+			godotyAuthPending: !isInitialized || isInitializing,
+			godotyUserEmail: auth?.getUser()?.email ?? null,
+			godotyUserName: auth?.getUser()?.user_metadata?.full_name ?? null,
+		})
+	}
+	// godoty_change end
 
 	private async getHMRHtmlContent(webview: vscode.Webview): Promise<string> {
 		let localPort = "5173"
@@ -2272,6 +2296,15 @@ ${prompt}
 		this.kiloCodeTaskHistorySizeForTelemetryOnly = taskHistory.length
 		// kilocode_change end
 
+		// godoty_change start
+		const { GodotyAuthRegistry } = await import("../../services/godoty")
+		const godotyAuth = GodotyAuthRegistry.get()
+		const godotyAuthenticated = godotyAuth?.isAuthenticated() ?? false
+		const godotyAuthPending = !(godotyAuth?.isInitialized ?? false) || (godotyAuth?.isInitializing ?? false)
+		const godotyUserEmail = godotyAuth?.getUser()?.email ?? null
+		const godotyUserName = godotyAuth?.getUser()?.user_metadata?.full_name ?? null
+		// godoty_change end
+
 		return {
 			version: this.context.extension?.packageJSON?.version ?? "",
 			apiConfiguration,
@@ -2458,6 +2491,12 @@ ${prompt}
 			virtualQuotaActiveModel, // kilocode_change: Include virtual quota active model in state
 			debug: vscode.workspace.getConfiguration(Package.name).get<boolean>("debug", false),
 			speechToTextStatus, // kilocode_change: Speech-to-text availability status with failure reason
+			// godoty_change start
+			godotyAuthenticated,
+			godotyAuthPending,
+			godotyUserEmail,
+			godotyUserName,
+			// godoty_change end
 		}
 	}
 

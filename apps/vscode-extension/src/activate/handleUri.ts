@@ -3,11 +3,32 @@ import * as vscode from "vscode"
 import { CloudService } from "@roo-code/cloud"
 
 import { ClineProvider } from "../core/webview/ClineProvider"
+// godoty_change start
+import { GodotyAuthRegistry } from "../services/godoty"
+// godoty_change end
 
 export const handleUri = async (uri: vscode.Uri) => {
 	const path = uri.path
 	const query = new URLSearchParams(uri.query.replace(/\+/g, "%2B"))
 	const visibleProvider = ClineProvider.getVisibleInstance()
+
+	console.log(`[handleUri] *** URI HANDLER TRIGGERED ***`)
+	console.log(`[handleUri] Full URI: ${uri.toString()}`)
+	console.log(`[handleUri] Scheme: "${uri.scheme}", Authority: "${uri.authority}", Path: "${path}"`)
+	console.log(`[handleUri] Fragment length: ${uri.fragment?.length || 0}`)
+
+	// godoty_change start
+	if (path === "/auth/callback") {
+		const auth = GodotyAuthRegistry.get()
+		console.log(`[handleUri] Auth callback - registry has instance: ${!!auth}`)
+		if (auth) {
+			await auth.handleOAuthCallback(uri)
+		} else {
+			console.error("[handleUri] GodotyAuthRegistry.get() returned undefined!")
+		}
+		return
+	}
+	// godoty_change end
 
 	if (!visibleProvider) {
 		return
